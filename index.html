@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Jekyll v3.8.5">
+        <title>Checkout example · Bootstrap</title>
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
+    
+    </head>
+
+    <body>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+        <script>
+
+            //Encabezado
+            function encabezado() {
+                //Armado
+                var div = document.createElement("div");
+                    div.className = "py-5 text-center";
+                    var img = document.createElement("img");
+                        img.className = "d-block mx-auto mb-4";
+                        img.src = "https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg";
+                        img.alt = "";
+                        img.width = "72";
+                        img.height = "72";
+                    var h2 = document.createElement("h2");
+                        h2.appendChild(document.createTextNode("Checkout form"));
+                    var p = document.createElement("p");
+                        p.className = "lead";
+                        p.appendChild(document.createTextNode("Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it."));
+
+                //integracion
+                div.appendChild(img);
+                div.appendChild(h2);
+                div.appendChild(p);
+
+                return div
+            }
+            //Principal
+            function carrito_titulo() {
+                //armado
+                var h4 = document.createElement("h4");
+                    h4.className = "d-flex justify-content-between align-items-center mb-3";
+                var span_uno = document.createElement("span");
+                    span_uno.className = "text-muted";
+                    span_uno.appendChild(document.createTextNode("Tu carrito"));
+                var span_dos = document.createElement("span");
+                    span_dos.className = "badge badge-secondary badge-pill";
+                    span_dos.appendChild(document.createTextNode("3"));
+
+                //integracion
+                h4.appendChild(span_uno);
+                h4.appendChild(span_dos);
+
+                return h4;
+            }
+
+            function carrito_body() {
+                //armado
+                var ul = document.createElement("ul");
+                    ul.className = "list-group mb-3";
+                    ul.appendChild(carrito_body_item("Nombre del producto", 12));
+                    ul.appendChild(carrito_body_item("Segundo producto", 8));
+                    ul.appendChild(carrito_body_item("Tercer artículo", 5));
+                    ul.appendChild(carrito_body_item_codigo());
+                    ul.appendChild(carrito_body_item_total());
+                //integracion
+
+                return ul;
+            }
+
+            function carrito_body_item(title, num) {
+                //armado
+                var li = document.createElement("li")
+                    li.className = "list-group-item d-flex justify-content-between lh-condensed";
+                var div = document.createElement("div");
+                var span = document.createElement("span");
+                    span.className = "text-muted";
+                    span.appendChild(document.createTextNode("$ "+num))
+                var h6 = document.createElement("h6");
+                    h6.className = "my-0";
+                    h6.appendChild(document.createTextNode(title));
+                var small = document.createElement("small");
+                    small.className = "text-muted";
+                    small.appendChild(document.createTextNode("Breve descripción"));
+
+                //integracion
+                div.appendChild(h6);
+                div.appendChild(small);
+                li.appendChild(div);
+                li.appendChild(span);
+
+                return li
+            }
+
+            function carrito_body_item_codigo() {
+                //armado
+                var li = document.createElement("li");
+                    li.className = "list-group-item d-flex justify-content-between bg-light";
+                var div = document.createElement("div");
+                    div.className = "text-success";
+                    var h6 = document.createElement("h6");
+                        h6.className = "my-0";
+                        h6.appendChild(document.createTextNode("Código promocional"));
+                    var small = document.createElement("small");
+                        small.appendChild(document.createTextNode("EJEMPLO CÓDIGO"));
+                var span = document.createElement("span");
+                    span.appendChild(document.createTextNode("$ 5"));
+
+                //integracion
+                div.appendChild(h6);
+                div.appendChild(small);
+                li.appendChild(div);
+                li.appendChild(span);
+                return li;
+            }
+
+            function carrito_body_item_total() {
+                //armado
+                var li = document.createElement("li");
+                    li.className = "list-group-item d-flex justify-content-between";
+                    var span = document.createElement("span");
+                        span.appendChild(document.createTextNode("Total (USD)"));
+                    var strong = document.createElement("strong");
+                        strong.appendChild(document.createTextNode("$ 20"));
+                
+                //integracion
+                li.appendChild(span);
+                li.appendChild(strong);
+
+                return li;
+            }
+
+            function carrito_body_item_form() {
+                //armado
+                var form = document.createElement("form");
+                    form.className = "card p-2";
+                    var div = document.createElement("div");
+                        div.className = "input-group";
+                        var input  = document.createElement("input");
+                            input.type = "text";
+                            input.className = "form-control";
+                            input.placeholder = "Código promocional";
+                        var div_child = document.createElement("div");
+                            div_child.className = "input-group-append";
+                            var button = document.createElement("button");
+                                button.type = "submit";
+                                button.className = "btn btn-secondary";
+                                button.appendChild(document.createTextNode("Redimir"));
+                //integrar
+                div_child.appendChild(button);
+                div.appendChild(input);
+                div.appendChild(div_child);
+                form.appendChild(div);
+                return form;
+            }
+
+            function formulario_titulo() {
+                //armado
+                var h4 = document.createElement("h4");
+                    h4.className = "mb-3";
+                    h4.appendChild(document.createTextNode("Dirección de Envio"));
+
+                return h4;
+            }
+
+            function formulario_form_nombre(id, text) {
+                //armado
+                var div = document.createElement("div");
+                    div.className = "col-md-6 mb-3";
+                    var label = document.createElement("label");
+                        label.for = id;
+                        label.appendChild(document.createTextNode(text));
+                    var input = document.createElement("input");
+                        input.type = "text";
+                        input.className = "form-control";
+                        input.id = id;
+                        input.placeholder = "";
+                        input.value = "";
+                        input.required = "";
+                    var div_chield = document.createElement("div");
+                        div_chield.className = "invalid-feedback";
+                        div_chield.appendChild(document.createTextNode("Valid first name is required."));
+                //integracion
+                div.appendChild(label);
+                div.appendChild(input);
+                div.appendChild(div_chield);
+
+                return div;
+            }
+
+            function formulario_form_username() {
+                //armado
+                var div = document.createElement("div");
+                    div.className = "mb-3";
+                    var label = document.createElement("label");
+                        label.for = "username";
+                        label.appendChild(document.createTextNode("Nombre de usuario"))
+                    var div_group = document.createElement("div");
+                        div_group.className = "input-group";
+                        var div_group_prepend = document.createElement("div");
+                            div_group_prepend.className = "input-group-prepend";
+                            var span = document.createElement("span");
+                                span.className = "input-group-text";
+                                span.appendChild(document.createTextNode("@"));
+                            div_group_prepend.appendChild(span);
+                        var input = document.createElement("input");
+                            input.type = "text";
+                            input.className = "form-control";
+                            input.id = "username";
+                            input.placeholder = "Nombre de usuario";
+                            input.required = "";
+                        var div_invalid = document.createElement("div");
+                            div_invalid.className = "invalid-feedback";
+                            div_invalid.style.width = "100%";
+                            div_invalid.appendChild(document.createTextNode("Your username is required"));
+                
+                //integracion
+                div_group.appendChild(div_group_prepend);
+                div_group.appendChild(input);
+                div_group.appendChild(div_invalid);
+
+                div.appendChild(label);
+                div.appendChild(div_group);
+                
+                return div;
+            }
+
+            function formulario_form_comun(id, type , titulo, op, ph, feedback) {
+                //armado
+                var div  = document.createElement("div");
+                    div.className = "mb-3";
+                    var label = document.createElement("label");
+                        label.for = id;
+                        label.className = "vertical-align: inherit;";
+                        label.appendChild(document.createTextNode(titulo));
+                        var span = document.createElement("span");
+                            span.className = "text-muted";
+                            span.appendChild(document.createTextNode(op));
+                        label.appendChild(span);
+                    var input = document.createElement("input");
+                        input.type = type;
+                        input.className = "form-control";
+                        input.id = id;
+                        input.placeholder = ph;
+                    var div_invalid = document.createElement("div");
+                        div_invalid.className = "invalid-feedback";
+                        div_invalid.appendChild(document.createTextNode(feedback));
+
+                //integracion
+                div.appendChild(label);
+                div.appendChild(input);
+                div.appendChild(div_invalid);
+
+                return div;
+            }
+
+            function formulario_form_ubicacion() {
+                //armado
+                var div = document.createElement("div");
+                    div.className = "row";
+
+                //integracion
+                div.appendChild(formulario_form_ubicacion_comun("col-md-5 mb-3", "País", "country", "Estados Unidos", "Please select a valid country."));
+                div.appendChild(formulario_form_ubicacion_comun("col-md-4 mb-3", "Estado", "state", "California", "Please provide a valid state."));
+                div.appendChild(formulario_form_ubicacion_cp());
+                return div;
+            }
+
+            function formulario_form_ubicacion_comun(clase, titulo, id, op, feedback) {
+                //armado
+                var div = document.createElement("div");
+                    div.className = clase;
+                    var label = document.createElement("label");
+                        label.appendChild(document.createTextNode(titulo));
+                    var select = document.createElement("select");
+                        select.className = "custom-select d-block w-100";
+                        select.id = id;
+                        select.required = "";
+                        var option_uno = document.createElement("option");
+                            option_uno.value = "";
+                            option_uno.appendChild(document.createTextNode("Escoger..."));
+                        var option_dos = document.createElement("option");
+                            option_dos.value = "";
+                            option_dos.appendChild(document.createTextNode(op));
+                        select.appendChild(option_uno);
+                        select.appendChild(option_dos);
+                    var div_feedback = document.createElement("div");
+                        div_feedback.className = "invalid-feedback";
+                        div_feedback.appendChild(document.createTextNode(feedback));
+
+                //integracion
+                div.appendChild(label);
+                div.appendChild(select);
+                div.appendChild(div_feedback);
+
+                return div;
+            }
+
+            function formulario_form_ubicacion_cp() {
+                //Armado
+                var div = document.createElement("div");
+                    div.className = "col-md-3 mb-3";
+                    var label = document.createElement("label");
+                        label.for = "zip";
+                        label.appendChild(document.createTextNode("Código Postal"));
+                    var input = document.createElement("input");
+                        input.type = "text";
+                        input.className = "form-control";
+                    var div_feedback = document.createElement("div");
+                        div_feedback.className = "invalid-feedback";
+                        div_feedback.appendChild(document.createTextNode(" Zip code required."));
+
+                //integracion
+                div.appendChild(label);
+                div.appendChild(input);
+                div.appendChild(div_feedback);
+
+                return div;
+            }
+
+            function form_for_salto_linea() {
+                //armado
+                var hr = document.createElement("hr");
+                    hr.className = "mb-4";
+
+                return hr;
+            }
+
+            function form_for_condiciones(id, titulo) {
+                //armado
+                var div = document.createElement("div");
+                    var input = document.createElement("input");
+                        input.type = "checkbox";
+                    var label = document.createElement("label");
+                        label.appendChild(document.createTextNode(titulo));
+                
+                //integracion
+                div.appendChild(input);
+                div.appendChild(label);
+
+                return div;
+            }
+
+            function form_for_pago_titulo() {
+                //armado
+                var h4 = document.createElement("h4");
+                    h4.className = "mb-3";
+                    h4.appendChild(document.createTextNode("Pago"));
+
+                return h4;
+            }
+
+            function form_for_radio(method, titulo, desc, feedback) {
+                //armado
+                var div = document.createElement("div");
+                    
+                    var input = document.createElement("input");
+                        input.name = "paymentMethod";
+                        input.type = "radio";
+                        input.checked = "";
+                        input.required = "";
+                    var label = document.createElement("label");
+                        label.appendChild(document.createTextNode(titulo));
+                //integracion
+                div.appendChild(input);
+                div.appendChild(label);
+
+                return div;
+            }
+
+            function form_for_tarjeta_col(title, desc, feedback) {
+                //armado
+                var div_col = document.createElement("div");
+                        div_col.className = "col-md-6 mb-3";
+                        var label = document.createElement("label");
+                            label.for = "cc-name";
+                            label.appendChild(document.createTextNode(title));
+                        var input = document.createElement("input");
+                            input.type = "text";
+                            input.className = "form-control";
+                            input.id = "cc-name";
+                        var small = document.createElement("small");
+                            small.className = "text-muted";
+                            small.appendChild(document.createTextNode(desc));
+                        var div_feedback = document.createElement("div");
+                            div_feedback.className = "invalid-feedback";
+                            div_feedback.appendChild(document.createTextNode(feedback));
+
+                //integrar
+                div_col.appendChild(label);
+                div_col.appendChild(input);
+                div_col.appendChild(small);
+                div_col.appendChild(div_feedback);
+
+                return div_col;
+            }
+
+            function form_for_tarjeta() {
+                //armado
+                var div = document.createElement("div");
+                    div.className = "row";
+                    
+                div.appendChild(form_for_tarjeta_col("Nombre en la tarjeta", "Nombre completo como se muestra en la tarjeta", "Name on card is required"));
+                div.appendChild(form_for_tarjeta_col("Número de tarjeta de crédito", "", "Credit card number is required"));
+
+                return div;
+            }
+
+            function form_for_tarjeta_cont_col(title, feedback) {
+                //armado
+                var div_col = document.createElement("div");
+                        div_col.className = "col-md-3 mb-3";
+                        var label = document.createElement("label");
+                            label.for = "cc-expiration";
+                            label.appendChild(document.createTextNode(title));
+                        var input = document.createElement("input");
+                            input.type = "text";
+                            input.className = "form-control";
+                            input.id = "cc-expiration";
+                        var div_feedback = document.createElement("div");
+                            div_feedback.className = "invalid-feedback";
+                            div_feedback.appendChild(document.createTextNode(feedback));
+
+                //integrar
+                div_col.appendChild(label);
+                div_col.appendChild(input);
+                div_col.appendChild(div_feedback);
+
+                return div_col;
+            }
+
+            function form_for_tarjeta_cont() {
+                //armado
+                var div = document.createElement("div");
+                    div.className = "row";
+                    
+                div.appendChild(form_for_tarjeta_cont_col("Vencimiento", "Expiration date required"));
+                div.appendChild(form_for_tarjeta_cont_col("CVV",  "Security code required"));
+
+                return div;
+            }
+
+            function form_for_pago() {
+                //armado
+                var div = document.createElement("div");
+                    div.className = "d-block my-3";
+
+                div.appendChild(form_for_radio("credit", "Tarjeta de crédito"));
+                div.appendChild(form_for_radio("debit", "Tarjeta de débito"));
+                div.appendChild(form_for_radio("paypal", "PayPal"));
+
+                return div;
+            }
+
+            function form_for_pago_boton() {
+                //armado
+                var button = document.createElement("button");
+                    button.className = "btn btn-primary btn-lg btn-block";
+                    button.type = "submit";
+                    button.appendChild(document.createTextNode("Continuar a la comprobación"));
+                
+                return button;
+            }
+
+            function formulario_form() {
+                //Armado
+                var form = document.createElement("form");
+                    form.className = "needs-validation";
+                    form.noValidate = "";
+                    var div_row_uno = document.createElement("div");
+                        div_row_uno.className = "row";
+                        div_row_uno.appendChild(formulario_form_nombre("firstName", "Nombre de pila"));
+                        div_row_uno.appendChild(formulario_form_nombre("lastName", "Apellido"));
+                        
+                //integracion
+                form.appendChild(div_row_uno);
+                form.appendChild(formulario_form_username());
+                form.appendChild(formulario_form_comun("email", "email", "Correo electrónico ", "(opcional)", "you@example.com", "Please enter a valid email address for shipping updates."));
+                form.appendChild(formulario_form_comun("address", "text", "Habla a ",  "", "1234 Main St", "Please enter your shipping address."));
+                form.appendChild(formulario_form_comun("address2", "text", "Dirección 2",  "(opcional)", "Apartamento o suite", ""));
+                form.appendChild(formulario_form_ubicacion());
+                form.appendChild(form_for_salto_linea());
+                form.appendChild(form_for_condiciones("same-address" ,"La dirección de envío es la misma que mi dirección de facturación"));
+                form.appendChild(form_for_condiciones("save-info" ,"Guarde esta información para la próxima vez"));
+                form.appendChild(form_for_salto_linea());
+                form.appendChild(form_for_pago_titulo());
+                form.appendChild(form_for_pago());
+                form.appendChild(form_for_tarjeta());
+                form.appendChild(form_for_tarjeta_cont());
+                form.appendChild(form_for_salto_linea());
+                form.appendChild(form_for_pago_boton());
+
+                return form;
+            }
+
+            function principal() {
+                //armado
+                var div = document.createElement("div");
+                    div.className = "row";
+                //carrito
+                var col_uno = document.createElement("div");
+                    col_uno.className = "col-md-4 order-md-2 mb-4";
+                    col_uno.appendChild(carrito_titulo());
+                    col_uno.appendChild(carrito_body());
+                    col_uno.appendChild(carrito_body_item_form());
+                //formulario
+                var col_dos = document.createElement("div");
+                    col_dos.className = "col-md-8 order-md-1";
+                    col_dos.appendChild(formulario_titulo());
+                    col_dos.appendChild(formulario_form());
+                //Integracion
+                div.appendChild(col_uno);
+                div.appendChild(col_dos);
+
+                return div;
+            }
+            //Footer
+            function footer_li(link) {
+                //armado
+                var li = document.createElement("li");
+                    li.className = "list-inline-item";
+                var a = document.createElement("a");
+                    a.href = "#";
+                    a.appendChild(document.createTextNode(link));
+                
+                //integracion
+                li.appendChild(a);
+
+                return li;
+            }
+
+            function footer() {
+                //Armado
+                var footer = document.createElement("footer");
+                    footer.className = "my-5 pt-5 text-muted text-center text-small";
+                var p = document.createElement("p");
+                    p.className = "mb-1";
+                    p.appendChild(document.createTextNode("© 2017-2019 Nombre de la empresa"));
+                var ul = document.createElement("ul");
+                    ul.className = "list-inline";
+                    ul.appendChild(footer_li("Intimidad"));
+                    ul.appendChild(footer_li("Condiciones"));
+                    ul.appendChild(footer_li("Apoyo"));
+
+                //integracion
+                footer.appendChild(p);
+                footer.appendChild(ul);
+
+                return footer;
+            }
+            //Body
+            var body = document.getElementsByTagName("body")[0];
+                body.className = "bg-light";
+            //Contenedor Global
+            var container = document.createElement("div")
+                container.className = "container";
+                container.appendChild(encabezado());
+                container.appendChild(principal());
+                container.appendChild(footer());
+            //Integracion Principal
+            body.appendChild(container);
+        </script>
+    </body>
+
+</html
